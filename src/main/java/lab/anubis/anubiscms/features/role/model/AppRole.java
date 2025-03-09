@@ -1,8 +1,8 @@
 package lab.anubis.anubiscms.features.role.model;
 
 public enum AppRole {
-    SUPER_ADMIN,
-    CLIENT_ADMIN,
-    CLIENT_EDITOR,
-    CLIENT_USER
+    ROLE_SUPER_ADMIN,
+    ROLE_CLIENT_ADMIN,
+    ROLE_CLIENT_EDITOR,
+    ROLE_CLIENT_USER
 }

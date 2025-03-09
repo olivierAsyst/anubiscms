@@ -2,7 +2,6 @@ package lab.anubis.anubiscms.secutity.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lab.anubis.anubiscms.features.user.model.User;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
-@Data
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
@@ -88,6 +86,42 @@ public class UserDetailsImpl implements UserDetails {
 
     public boolean is2faEnabled() {
         return is2faEnabled;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public boolean isIs2faEnabled() {
+        return is2faEnabled;
+    }
+
+    public void setIs2faEnabled(boolean is2faEnabled) {
+        this.is2faEnabled = is2faEnabled;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

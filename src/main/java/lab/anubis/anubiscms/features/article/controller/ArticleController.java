@@ -2,6 +2,7 @@ package lab.anubis.anubiscms.features.article.controller;
 
 import lab.anubis.anubiscms.features.article.dto.ArticleDto;
 import lab.anubis.anubiscms.features.article.service.ArticleService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,11 +25,11 @@ public class ArticleController {
     public ArticleDto createArticle(@RequestBody ArticleDto articleDto,
                                     @AuthenticationPrincipal UserDetails userDetails){
         String username = userDetails.getUsername();
-        System.out.println("USER DETAILS " + username);
         return articleService.createArticle(articleDto, username);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('USER_ADMIN')")
     public Optional<ArticleDto> updateArticle(@PathVariable Long id, @RequestBody ArticleDto articleDto,
                                               @AuthenticationPrincipal UserDetails userDetails){
         return articleService.updateArticle(id, articleDto, userDetails.getUsername());
