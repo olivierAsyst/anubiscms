@@ -10,6 +10,7 @@ import lab.anubis.anubiscms.features.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,6 +37,11 @@ public class UserServiceImpl implements UserService {
         return userConverter.convertToDto(user);
     }
 
+    @Override
+    public User findByUsername(String username) {
+        Optional<User> user = userRepository.findByUserName(username);
+        return user.orElseThrow(() -> new RuntimeException("Utilisateur introuvable avec le nom d'utilisateur: " + username));
+    }
     @Override
     public void updateUserRole(Long userId, String roleName) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
